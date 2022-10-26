@@ -1,7 +1,3 @@
-/*
-https://github.com/validatorjs/validator.js
-*/
-
 const { validationResult } = require("express-validator");
 const {
   errorResponse,
