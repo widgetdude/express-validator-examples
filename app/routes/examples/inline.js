@@ -11,11 +11,14 @@ const { validatorFormat } = require("../../utilities");
 
 router.post(
   "/",
+  /* Every request should have a user id */
   body("userId")
     .exists()
     .withMessage("userId is required")
     .isMongoId()
     .withMessage("userId must be a valid mongo id"),
+
+  /* Every request should have a event */
   body("event")
     .exists()
     .withMessage("event is required")
@@ -23,6 +26,8 @@ router.post(
     .withMessage("event must be a string")
     .isIn(events)
     .withMessage(`event must be one of the following: [${events.join(", ")}]`),
+
+  /*GameScore events should have game */
   body("game")
     .if(body("event").equals("GameScore"))
     .exists()
@@ -31,6 +36,8 @@ router.post(
     .withMessage("game must be a string")
     .isIn(games)
     .withMessage(`game must be one of the following: [${games.join(", ")}]`),
+
+  /*GameScore events should have a score that is an int and between 0-100 */
   body("score")
     .if(body("event").equals("GameScore"))
     .exists()

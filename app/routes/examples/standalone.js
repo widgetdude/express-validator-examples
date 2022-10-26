@@ -13,6 +13,7 @@ const { events, games } = require("../../constants");
 */
 
 const validateRequest = async (req) => {
+  /* Every request should have a user id */
   await body("userId")
     .exists()
     .withMessage("userId is required")
@@ -20,6 +21,7 @@ const validateRequest = async (req) => {
     .withMessage("userId must be a valid mongo id")
     .run(req);
 
+  /* Every request should have a event */
   await body("event")
     .exists()
     .withMessage("event is required")
@@ -29,6 +31,7 @@ const validateRequest = async (req) => {
     .withMessage(`event must be one of the following: [${events.join(", ")}]`)
     .run(req);
 
+  /*GameScore events should have game */
   await body("game")
     .if(body("event").equals("GameScore"))
     .exists()
@@ -39,6 +42,7 @@ const validateRequest = async (req) => {
     .withMessage(`game must be one of the following: [${games.join(", ")}]`)
     .run(req);
 
+  /*GameScore events should have a score that is an int and between 0-100 */
   await body("score")
     .if(body("event").equals("GameScore"))
     .exists()
