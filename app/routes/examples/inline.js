@@ -4,6 +4,11 @@ const { asyncHandler, errorResponse } = require("../../utilities");
 const { events, games } = require("../../constants");
 const { validatorFormat } = require("../../utilities");
 
+/* 
+  This is an example of how to use express validator inline.
+  This is the most verbose way to use express validator.
+*/
+
 router.post(
   "/",
   body("userId")

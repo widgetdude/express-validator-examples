@@ -1,8 +1,16 @@
 const router = require("express").Router();
 const { body, validationResult } = require("express-validator");
-const { asyncHandler, errorResponse } = require("../../utilities");
+const {
+  asyncHandler,
+  errorResponse,
+  validatorFormat,
+} = require("../../utilities");
 const { events, games } = require("../../constants");
-const { validatorFormat } = require("../../utilities");
+
+/* 
+  This is an example of how to use express validator as a standalone function.
+  The function can be either created inline or imported from another file.
+*/
 
 const validateRequest = async (req) => {
   await body("userId")
