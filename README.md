@@ -2,6 +2,11 @@
 
 A few different ways to implement express validator
 
+## References
+
+1.  `https://express-validator.github.io/docs/`
+2.  `https://github.com/validatorjs/validator.js`
+
 ## Setup
 
 ##### Install the dependencies
